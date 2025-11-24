@@ -1,10 +1,13 @@
-from PyQt5.QtWidgets import QLineEdit, QWidget, QHBoxLayout, QLabel, QSlider, QComboBox
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QIntValidator
-from PyQt5.QtCore import pyqtSignal, Qt
+from PyQt5.QtWidgets import QComboBox, QHBoxLayout, QLabel, QLineEdit, QSlider, QWidget
+
 
 # widget container that combines a QLabel and an input box left to right
 class LabelAndInput(QWidget):
-    def __init__(self, labelText,lineEditStartingText, valMin, valMax, onTextEdit, outerLayout):
+    def __init__(
+        self, labelText, lineEditStartingText, valMin, valMax, onTextEdit, outerLayout
+    ):
         super().__init__()
 
         self.layout = QHBoxLayout(self)
@@ -18,8 +21,18 @@ class LabelAndInput(QWidget):
         self.layout.addWidget(self.lineEdit)
         outerLayout.addWidget(self)
 
+
 class StatLabelAndSlider(QWidget):
-    def __init__(self, labelText,sliderStartingVal, valMin, valMax, onSliderMove, outerLayout, stat):
+    def __init__(
+        self,
+        labelText,
+        sliderStartingVal,
+        valMin,
+        valMax,
+        onSliderMove,
+        outerLayout,
+        stat,
+    ):
         super().__init__()
 
         self.labelText = labelText
@@ -39,8 +52,9 @@ class StatLabelAndSlider(QWidget):
     def updateLabelText(self, num):
         self.label.setText(self.labelText + str(num))
 
+
 class DropDown(QWidget):
-    def __init__(self,itemList, outerLayout, startingIndex, onComboChange):
+    def __init__(self, itemList, outerLayout, startingIndex, onComboChange):
         super().__init__()
 
         combo = QComboBox()
@@ -51,8 +65,6 @@ class DropDown(QWidget):
         combo.setCurrentIndex(startingIndex)
         combo.currentIndexChanged.connect(onComboChange)
 
-
-        
 
 class ClickableLabel(QLabel):
     clicked = pyqtSignal()  # custom signal

@@ -1,13 +1,14 @@
-from PyQt5.QtWidgets import QDockWidget, QWidget, QVBoxLayout, QCheckBox, QWidget, QVBoxLayout
+from CustomWidgets import DropDown, LabelAndInput, StatLabelAndSlider
 from MemoryReader import MemoryReader, Stats
-from CustomWidgets import LabelAndInput, StatLabelAndSlider, DropDown
+from PyQt5.QtWidgets import QCheckBox, QDockWidget, QVBoxLayout, QWidget
+
 
 class CharacterStatWindow(QDockWidget):
     def __init__(self, i, mainwindow, memReader: MemoryReader):
         super().__init__()
         self.i = i
         self.mainwindow = mainwindow
-        
+
         self.setWindowTitle(f"{get_character_name(i)}")
         self.setFloating(True)
         self.setFixedWidth(350)
@@ -79,7 +80,7 @@ class CharacterStatWindow(QDockWidget):
 
     def normalUnlocksEdited(self,index):
         self.memoryReader.setNormalLevelUnlocks(index)
-    
+
     def insaneUnlocksEdited(self,index):
         self.memoryReader.setInsaneLevelUnlocks(index)
 
